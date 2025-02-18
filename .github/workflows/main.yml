@@ -50,6 +50,9 @@ jobs:
             - name: Verify file existence
               run: |
                 ls -l docker-compose.yml  # Check the location of docker-compose.yml
+            - name: copy docker-compose.yml to EC2 
+              run: |
+                scp -o StrictHostKeyChecking=no -i <(echo "${{ secrets.EC2_KEY }}") docker-compose.yml ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ubuntu/
             - name: ssh into a EC2 instance
               uses: appleboy/ssh-action@v0.1.10
               with:
@@ -59,10 +62,9 @@ jobs:
                   script: |
                       echo "Listing files in the current directory:"
                       ls -la
-                      scp -r docker-compose.yml ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ubuntu
+                      cd /home/ubuntu
                       docker pull ${{ secrets.DOCKERHUB_USERNAME}}/backend:latest
                       docker pull ${{ secrets.DOCKERHUB_USERNAME}}/frontend:latest
-                      cd /home/ubuntu
                       docker-compose up -d --force-recreate
 
         
