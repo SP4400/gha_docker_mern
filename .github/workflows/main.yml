@@ -55,7 +55,7 @@ jobs:
                 echo "${{ secrets.EC2_KEY }}" > private_key.pem
                 chmod 600 private_key.pem
                 scp -o StrictHostKeyChecking=no -i private_key.pem docker-compose.yml ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ubuntu/
-                scp -i private_key.pem .env ubuntu@your-ec2-ip:/home/ubuntu/
+                scp -i private_key.pem .env ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ubuntu/
             - name: ssh into a EC2 instance
               uses: appleboy/ssh-action@v0.1.10
               with:

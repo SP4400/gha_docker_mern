@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: ${{ secrets.DOCKERHUB_USERNAME }}/frontend:latest
+    image: swapnil4400/frontend:latest
     ports:
       - "5173:5173"  
     networks: 
@@ -17,7 +17,7 @@ services:
       - mongo-data:/data/db
     
   backend:
-    image: ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
+    image: swapnil4400/backend:latest
     ports:
       - "5050:5050"
     networks:
