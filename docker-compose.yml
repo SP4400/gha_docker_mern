@@ -1,6 +1,6 @@
 services:
   frontend:
-    build: frontend
+    image: ${{ secrets.DOCKERHUB_USERNAME }}/frontend:latest
     ports:
       - "5173:5173"  
     networks: 
@@ -17,7 +17,7 @@ services:
       - mongo-data:/data/db
     
   backend:
-    build: backend
+    image: ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
     ports:
       - "5050:5050"
     networks:
