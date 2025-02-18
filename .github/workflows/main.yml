@@ -44,9 +44,16 @@ jobs:
         needs: push-to-dockerhub
         runs-on: ubuntu-latest
         steps:
-            - name: checkout code
-              uses: actions/checkout@v4
-            - name: login to aws 
+            - name: ssh into a EC2 instance
+              uses: appleboy/ssh-action@v0.1.10
+              with:
+                  host: ${{ secrets.EC2_HOST }}
+                  username: ${{ secrets.EC2_USERNAME }}
+                  key: ${{ secrets.EC2_KEY }}
+                  script: |
+                      docker pull ${{ secrets.DOCKERHUB_USERNAME}}/backend:latest
+                      docker pull ${{ secrets.DOCKERHUB_USERNAME}}/frontend:latest
+                      docker-compose up -d --force-recreate
         
 
         
