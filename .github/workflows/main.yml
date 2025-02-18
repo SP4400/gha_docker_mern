@@ -45,6 +45,8 @@ jobs:
         needs: push-to-dockerhub
         runs-on: ubuntu-latest
         steps:
+            - name: checkout code
+              uses: actions/checkout@v4
             - name: ssh into a EC2 instance
               uses: appleboy/ssh-action@v0.1.10
               with:
