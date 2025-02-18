@@ -54,7 +54,7 @@ jobs:
                   script: |
                       echo "Listing files in the current directory:"
                       ls -la
-                      scp -r docker-compose.yml ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ubuntu
+                      scp -r docker-compose.yaml ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ubuntu
                       docker pull ${{ secrets.DOCKERHUB_USERNAME}}/backend:latest
                       docker pull ${{ secrets.DOCKERHUB_USERNAME}}/frontend:latest
                       cd /home/ubuntu
