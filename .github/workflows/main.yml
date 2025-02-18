@@ -54,6 +54,5 @@ jobs:
                       docker pull ${{ secrets.DOCKERHUB_USERNAME}}/backend:latest
                       docker pull ${{ secrets.DOCKERHUB_USERNAME}}/frontend:latest
                       docker-compose up -d --force-recreate
-        
 
         
