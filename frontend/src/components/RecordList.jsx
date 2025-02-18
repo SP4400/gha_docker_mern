@@ -77,6 +77,7 @@ export default function RecordList() {
   }
 
   // This following section will display the table with the records of individuals.
+  // test
   return (
     <>
       <h3 className="text-lg font-semibold p-4">Employee Records</h3>
